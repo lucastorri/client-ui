@@ -5,11 +5,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     // Metadata.
     pkg: grunt.file.readJSON('package.json'),
-    banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
-      '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-      '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
-      '* Copyright (c) <%= grunt.template.today("yyyy") %>;' +
-      ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
+    banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> */\n',
     // Task configuration.
     concat: {
       options: {
@@ -24,11 +20,15 @@ module.exports = function(grunt) {
     uglify: {
       options: {
         banner: '<%= banner %>',
-        sourceMap: '<%= uglify.dist.dest %>.map'
+        sourceMap: 'build/js/<%= pkg.name %>.map'
       },
-      dist: {
+      app: {
         src: '<%= concat.dist.dest %>',
         dest: '<%= concat.dist.dest.replace(/\.js$/, ".min.js") %>'
+      },
+      libs: {
+        expand: true,
+        src: 'build/js/lib/**/*.js'
       }
     },
     copy: {
@@ -106,7 +106,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-bower');
 
   // Default task.
-  grunt.registerTask('build', [/*'jshint', 'qunit',*/ 'concat', 'uglify', 'copy', 'bower']); 
-  grunt.registerTask('default', ['build', 'connect']);
+  grunt.registerTask('build', [/*'jshint', 'qunit',*/ 'concat', 'bower', 'copy', 'uglify']); 
+  grunt.registerTask('server', ['build', 'connect']);
+
+  grunt.registerTask('default', ['build'])
 
 };
