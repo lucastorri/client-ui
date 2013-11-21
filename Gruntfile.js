@@ -39,6 +39,33 @@ module.exports = function(grunt) {
         dest: 'build/',
       },
     },
+    'bower-install': {
+
+      target: {
+
+        // Point to the html file that should be updated
+        // when you run `grunt bower-install`
+        html: 'build/index.html',
+
+        // Optional:
+
+        // If your file paths shouldn't contain a certain
+        // portion of a url, it can be excluded
+        ignorePath: 'app/',
+
+        // Customize how your stylesheets are included on
+        // your page.
+        //
+        //   default: '<link rel="stylesheet" href="{{filePath}}" />'
+        cssPattern: '<link href="{{filePath}}" rel="stylesheet">',
+
+        // Customize how your <script>s are included into
+        // your HTML file.
+        //
+        //   default: '<script src="{{filePath}}"></script>'
+        jsPattern: '<script type="text/javascript" src="{{filePath}}"></script>'
+      }
+    },
     jshint: {
       options: {
         curly: true,
@@ -98,9 +125,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-bower-install');
 
   // Default task.
-  grunt.registerTask('build', [/*'jshint', 'qunit',*/ 'concat', 'uglify', 'copy']); 
+  grunt.registerTask('build', [/*'jshint', 'qunit',*/ 'concat', 'uglify', 'copy', 'bower-install']); 
   grunt.registerTask('default', ['build', 'connect']);
 
 };
