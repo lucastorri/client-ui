@@ -1,6 +1,12 @@
 {
   "name": "pcur",
   "dependencies": {
-    "angular": "~1.2.1"
+    "angular": "~1.2.1",
+    "watch": "*"
+  },
+  "exportsOverride": {
+    "*": {
+      "js": "**/*.min.js"
+    }
   }
 }

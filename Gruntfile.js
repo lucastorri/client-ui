@@ -25,10 +25,6 @@ module.exports = function(grunt) {
       app: {
         src: '<%= concat.dist.dest %>',
         dest: '<%= concat.dist.dest.replace(/\.js$/, ".min.js") %>'
-      },
-      libs: {
-        expand: true,
-        src: 'build/js/lib/**/*.js'
       }
     },
     copy: {
@@ -40,8 +36,10 @@ module.exports = function(grunt) {
       },
     },
     bower: {
-      dev: {
-        dest: 'build/js/lib'
+      options: {
+        targetDir: 'build/js/lib'
+      },
+      install: {
       }
     },
     jshint: {
@@ -103,7 +101,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-bower');
+  grunt.loadNpmTasks('grunt-bower-task');
 
   // Default task.
   grunt.registerTask('build', [/*'jshint', 'qunit',*/ 'concat', 'bower', 'copy', 'uglify']); 
