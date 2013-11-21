@@ -15,6 +15,11 @@ npm install grunt-cli -g --save-dev
 npm install --save-dev                      # download dependencies
 ```
 
+## Running a server
+
+```
+grunt connect
+```
 
 
 ### Others

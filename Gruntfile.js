@@ -68,6 +68,15 @@ module.exports = function(grunt) {
         files: '<%= jshint.lib_test.src %>',
         tasks: ['jshint:lib_test', 'qunit']
       }
+    },
+    connect: {
+      server: {
+        options: {
+          port: 9001,
+          base: 'src',
+          keepalive: true
+        }
+      }
     }
   });
 
@@ -77,6 +86,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-connect');
 
   // Default task.
   grunt.registerTask('default', [/*'jshint', 'qunit',*/ 'concat', 'uglify']);
