@@ -11,15 +11,24 @@
 
 ```
 cd $project_dir
-npm install grunt-cli bower -g --save-dev
-npm install --save-dev                      # download dependencies
+npm install grunt-cli bower -g
+npm install                                 # download dependencies
 bower install                               # install app js requirements
 ```
 
-## Running a server
+## Running
+
+* Build:
 
 ```
-grunt connect
+grunt build
+```
+
+
+* With server:
+
+```
+grunt
 ```
 
 ## Installing a bower package

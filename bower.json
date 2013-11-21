@@ -1,18 +1,13 @@
 {
-  "name": "grunt",
-  "version": "0.0.0",
-  "authors": [
-    "Lucas Torri <lucastorri@gmail.com>"
-  ],
-  "dependencies": {
-    "angularjs-bower": "*"
-  },
-  "license": "MIT",
+  "name": "pcur",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "angular": "~1.2.1"
+  }
 }
