@@ -18,7 +18,7 @@ module.exports = function(grunt) {
       },
       dist: {
         src: ['src/js/<%= pkg.name %>.js', 'src/js/<%= pkg.name %>/**/*.js'],
-        dest: 'build/<%= pkg.name %>.js'
+        dest: 'build/js/<%= pkg.name %>.js'
       }
     },
     uglify: {
@@ -28,8 +28,16 @@ module.exports = function(grunt) {
       },
       dist: {
         src: '<%= concat.dist.dest %>',
-        dest: 'build/<%= pkg.name %>.min.js'
+        dest: '<%= concat.dist.dest.replace(/\.js$/, ".min.js") %>'
       }
+    },
+    copy: {
+      main: {
+        expand: true,
+        cwd: 'src/',
+        src: ['**/*.html', 'lib/**/*.js'],
+        dest: 'build/',
+      },
     },
     jshint: {
       options: {
@@ -73,11 +81,12 @@ module.exports = function(grunt) {
       server: {
         options: {
           port: 9001,
-          base: 'src',
+          base: 'build',
           keepalive: true
         }
       }
-    }
+    },
+    clean: ['build']
   });
 
   // These plugins provide necessary tasks.
@@ -87,8 +96,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
   // Default task.
-  grunt.registerTask('default', [/*'jshint', 'qunit',*/ 'concat', 'uglify']);
+  grunt.registerTask('build', [/*'jshint', 'qunit',*/ 'concat', 'uglify', 'copy']); 
+  grunt.registerTask('default', ['build', 'connect']);
 
 };
