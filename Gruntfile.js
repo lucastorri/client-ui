@@ -40,6 +40,7 @@ module.exports = function(grunt) {
     bower: {
       options: {
         targetDir: 'build/',
+        verbose: true,
         layout: function(type, component) { return path.join(type, 'lib', component); }
       },
       install: {
