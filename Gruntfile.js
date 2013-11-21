@@ -1,6 +1,8 @@
 /*global module:false*/
 module.exports = function(grunt) {
 
+  var path = require('path');
+
   // Project configuration.
   grunt.initConfig({
     // Metadata.
@@ -37,7 +39,8 @@ module.exports = function(grunt) {
     },
     bower: {
       options: {
-        targetDir: 'build/js/lib'
+        targetDir: 'build/',
+        layout: function(type, component) { return path.join(type, 'lib', component); }
       },
       install: {
       }
