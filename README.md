@@ -6,18 +6,13 @@
 * npm
 
 
-## Installing grunt
-
-```
-npm install grunt-cli -g
-```
 
 ## Starting with the project
 
 ```
 cd $project_dir
+npm install grunt-cli -g --save-dev
 npm install --save-dev                      # download dependencies
-npm install grunt --save-dev                # ??? unsure if really necessary
 ```
 
 
