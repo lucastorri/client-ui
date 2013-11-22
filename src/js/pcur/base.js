@@ -1,5 +1,6 @@
 angular.module('pcur-base', [])
-.controller('PcurCtrl', ['$scope', function($scope) {
+.controller('PcurCtrl', ['$scope', '$http', function($scope, $http) {
 
+    $http.get(api + '/user/info');
 
 }]);

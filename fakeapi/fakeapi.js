@@ -1,5 +1,4 @@
 var https = require('https');
-var httpProxy = require('http-proxy');
 var fs = require('fs');
 
 var staticFilesFolder = '/Users/lucastorri/Vagrant/curator/code/curator-server/src/main/webapp/static/';
@@ -14,54 +13,16 @@ var mimeTypes = {
 };
 
 
-var proxy = new httpProxy.HttpProxy({
-  target: {
-    host: 'stg.curator.places.lbs.maps.nokia.com',
-    port: 443,
-    https: true,
-    rejectUnauthorized: false
-  }
-});
-
-var place = {
-  "name": {
-    "name": "Tst place : " + new Date(),
-    "language": "en"
-  },
-  "categories": [
-    {
-      "id": "400-4300-0201",
-      "name": "Parking Only",
-      "system": "navteq-lcms",
-      "isPrimary": true
-    }
-  ],
-  "additionalContacts": [],
-  "alternativeNames": [],
-  "position": {
-    "latitude": parseFloat('52.' + (function() { var r = Math.random().toString(); return r.substring(r.length - 6) })()),
-    "longitude": parseFloat('13.' + (function() { var r = Math.random().toString(); return r.substring(r.length - 6) })())
-  },
-  "address": {
-    "house": "120",
-    "street": "Invalidenstrasse",
-    "city": "Berlin",
-    "district": "Mitte",
-    "state": "Berlin",
-    "postalCode": "10115",
-    "countryCode": "DEU"
-  }
-};
 
 var options = {
-  key: fs.readFileSync('key.pem'),
-  cert: fs.readFileSync('cert.pem')
+  key: fs.readFileSync('fakeapi/key.pem'),
+  cert: fs.readFileSync('fakeapi/cert.pem')
 };
 
 https.createServer(options, function(req, res) {
   console.log(req.method, req.url);
 
-  res.writeHead(403);
+  res.writeHead(403, { 'Access-Control-Allow-Origin': '*'});
   res.end();
   
   // var staticFile = req.url.match(/^\/pcur\/static\/([^?]+)(\?.*)?/);
