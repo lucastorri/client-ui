@@ -26,10 +26,14 @@
         <script src="/js/pcur.min.js"></script>
 
         <script>
-            $.get('/config.json').done(function(config) {
+            $.get('/config.json')
+            .done(function(config) {
                 angular.module('pcur-config', []).constant('config', config);
                 angular.bootstrap(document, ['pcur']);
             })
+            .fail(function() {
+                console.log('Could not load configuration file');
+            });
         </script>
 
     </body>
