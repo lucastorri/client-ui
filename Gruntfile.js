@@ -29,7 +29,7 @@ module.exports = function(grunt) {
     uglify: {
       options: {
         banner: '<%= banner %>',
-        sourceMap: 'build/js/<%= pkg.name %>.map.js',
+        sourceMap: '<%= uglify.app.dest %>.map',
         sourceMappingURL: '<%= uglify.options.sourceMap.replace("build/", "/") %>',
         sourceMapRoot: '/',
         sourceMapPrefix: 1
@@ -43,7 +43,7 @@ module.exports = function(grunt) {
       main: {
         expand: true,
         cwd: 'src/',
-        src: ['**/*.html', 'lib/**/*.js'],
+        src: ['**/*.html', 'lib/**/*.js', 'favicon.ico'],
         dest: 'build/',
       },
       lib_js: {
@@ -106,13 +106,18 @@ module.exports = function(grunt) {
         tasks: ['jshint:lib_test', 'qunit']
       }
     },
-    connect: {
+    shell: {
+      fakeapi: {
+        options: {
+          stdout: true
+        },
+        command: 'node fakeapi/fakeapi.js'
+      },
       server: {
         options: {
-          port: 9001,
-          base: 'build',
-          keepalive: true
-        }
+          stdout: true
+        },
+        command: 'node server/server.js'
       }
     },
     clean: ['build']
@@ -124,15 +129,18 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-connect'); //XXX to remove
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-shell');
 
   // Default task.
   grunt.registerTask('build', [/*'jshint', 'qunit',*/ 'concat', 'bower', 'copy', 'cssmin', 'uglify']); 
-  grunt.registerTask('server', ['build', 'connect']);
+  
+  grunt.registerTask('server', ['shell:server']);
+  grunt.registerTask('fakeapi', ['shell:fakeapi']);
 
   grunt.registerTask('default', ['build'])
 

@@ -47,6 +47,8 @@ grunt-init gruntfile
 
 ### Bower Plugins to look for
 
+* Some templating plugin (like for default.ssp)
+* https://github.com/gruntjs/grunt-contrib-watch
 * https://npmjs.org/package/grunt-preprocess
 * https://npmjs.org/package/grunt-usemin
 * https://npmjs.org/package/grunt-open
