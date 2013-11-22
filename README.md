@@ -2,7 +2,7 @@
 
 ## Dependencies
 
-* nodejs
+* node
 * npm
 
 
@@ -11,36 +11,33 @@
 
 ```
 cd $project_dir
-npm install grunt-cli bower -g
-npm install                                 # download dependencies
-bower install                               # install app js requirements
-```
-
-## Running
-
-* Build:
-
-```
-grunt build
+npm install                # download dependencies
+bower install              # install app js requirements
 ```
 
 
-* With server:
+## Tasks
 
-```
-grunt
-```
+* **build [default]**: builds the webapp
+* **server**: builds the webserver and open a webserver in port 9001
+* **connect**: bring the webserver up without building the app
+* **clean**: cleans the build
 
-## Installing a bower package
+
+
+
+
+
+## Others
+
+### Installing a bower package
 
 ```
 bower install $package[#$version] --save
 ```
 
 
-### Others
-
-* creating a grunt project
+### creating a grunt project
 
 ```
 npm install -g grunt-init
