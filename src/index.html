@@ -1,5 +1,5 @@
 
-<html ng-app="pcur" ng-controller="PcurCtrl">
+<html ng-controller="PcurCtrl">
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
@@ -25,9 +25,11 @@
         <script src="/js/lib/angular-route/angular-route.min.js"></script>
         <script src="/js/pcur.min.js"></script>
 
-        <script type="text/javascript">
-            //TODO: extract to an external file and make it an angular module (pcur-conf)
-            var api = 'https://localhost:8443/pcur/api';
+        <script>
+            $.get('/config.json').done(function(config) {
+                angular.module('pcur-config', []).constant('config', config);
+                angular.bootstrap(document, ['pcur']);
+            })
         </script>
 
     </body>

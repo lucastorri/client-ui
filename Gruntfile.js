@@ -43,7 +43,7 @@ module.exports = function(grunt) {
       main: {
         expand: true,
         cwd: 'src/',
-        src: ['**/*.html', 'lib/**/*.js', 'favicon.ico'],
+        src: ['**/*.html', 'lib/**/*.js', 'favicon.ico', 'config.json'],
         dest: 'build/',
       },
       lib_js: {

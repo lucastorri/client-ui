@@ -7,7 +7,8 @@ var mimeTypes = {
   "jpg": "image/jpeg",
   "png": "image/png",
   "js": "text/javascript",
-  "css": "text/css"
+  "css": "text/css",
+  "config.json": "application/json"
 };
 
 var options = {
@@ -18,9 +19,10 @@ var options = {
 https.createServer(options, function(req, res) {
   console.log(req.method, req.url);
   
-  var resource = req.url.match(/\/(js|css|favicon.ico|template)/);
+  var resource = req.url.match(/\/(js|css|favicon.ico|template|config.json)/);
   if (resource) {
-    fs.readFile('build/' + req.url, 'utf-8', function(err, data) {
+    console.log('build' + req.url);
+    fs.readFile('build' + req.url, 'utf-8', function(err, data) {
       res.writeHead(200, {'Content-Type': mimeTypes[resource[1]]});
       res.end(data);
     });
