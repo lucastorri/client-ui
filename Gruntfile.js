@@ -22,7 +22,9 @@ module.exports = function(grunt) {
     uglify: {
       options: {
         banner: '<%= banner %>',
-        sourceMap: 'build/js/<%= pkg.name %>.map'
+        sourceMap: 'build/js/<%= pkg.name %>.map.js',
+        sourceMappingURL: '<%= uglify.options.sourceMap.replace("build/", "") %>',
+        sourceMapPrefix: 1
       },
       app: {
         src: '<%= concat.dist.dest %>',
