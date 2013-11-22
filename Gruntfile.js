@@ -39,6 +39,18 @@ module.exports = function(grunt) {
         src: ['**/*.html', 'lib/**/*.js'],
         dest: 'build/',
       },
+      lib_js: {
+        expand: true,
+        cwd: 'lib/js',
+        src: '**/*',
+        dest: 'build/js/lib/app'
+      },
+      list_css: {
+        expand: true,
+        cwd: 'lib/css',
+        src: '**/*',
+        dest: 'build/css/lib/app'
+      }
     },
     bower: {
       options: {
