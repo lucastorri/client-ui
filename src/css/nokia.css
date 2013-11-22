@@ -1,0 +1,380 @@
+/*  Rounded elements
+*******/
+thead tr th:first-child {border-top-left-radius:5px; border-bottom-left-radius:5px;}
+thead tr th:last-child {border-top-right-radius:5px; border-bottom-right-radius:5px;}
+
+/*  Override button styles for UNDELETE
+*********/
+#placesAlreadyFixed {
+    color: #ff0000;
+    background: #ffffff none;
+    border: none;
+    padding: 0;
+    font-size: 12px;
+    margin: -2px 0 -2px 10px;
+}
+a.button#placesAlreadyFixed, button#placesAlreadyFixed {
+    text-decoration: underline;
+}
+
+a.button:hover#placesAlreadyFixed, button:hover#placesAlreadyFixed {
+    text-decoration: none;
+}
+
+.undeletePlace {
+    color: #ff0000;
+    background: #ffffff none;
+    border: none;
+    padding: 0;
+    font-size: 12px;
+    margin: -2px 0 -2px 10px;
+}
+a.button.undeletePlace, button.undeletePlace {
+    text-decoration: underline;
+}
+
+a.button:hover.undeletePlace, button:hover.undeletePlace {
+    text-decoration: none;
+}
+
+/* Page header and logo
+*****************************/
+#page-header {
+    width: 100%;
+}
+#page-header #logo {background:url(../images/home-logo.png) no-repeat top left; display:block; float:left; height:50px; margin-top: 6px; width:165px;}
+#maps-bookmarklet {float:left; display:inline; margin:9px 0 0 20px;}
+
+h3.icon {
+    margin-left: 0;
+    padding-left: 40px;
+}
+.small-spanner {
+    background: url(../images/spanner-angled-small.png) no-repeat top left;
+}
+
+#small-heading{
+    font-size: 12px;
+    display:inline;
+}
+
+.search-result{
+    background: url(../images/search-results.png) no-repeat top left;
+    height: 30px;
+    padding-left: 42px;
+}
+
+.fixed-places {
+    background: url(../images/fixed.png) no-repeat top left;
+    height: 25px;
+    padding-top: 7px;
+}
+
+
+/* Base styles
+****************/
+.content {
+    margin: 2% 5%;
+}
+.column {
+    float: left;
+    margin: 0 20px 0 0;
+}
+@media (min-width: 768px) {
+    .column {
+        width: 42%;
+    }
+}
+
+.validationMessage {
+    color: #666666;
+    display: block;
+    font-style: italic;
+    margin-top: 5px;
+}
+
+/* Account
+*************/
+.user-info {
+    background: none repeat scroll 0 0 rgba(18, 65, 145, 0.9);
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
+    height: 67px;
+}
+#account-preferences {
+    display: block;
+    float: left;
+    height: 67px;
+    margin: 0 0 0 -5px;
+    padding: 0;
+    width: 100%;
+}
+#account-preferences li {
+    border-right: 1px solid #3F65A5;
+    float: left;
+    height: 67px;
+    line-height: 67px;
+    padding: 0;
+    position: relative;
+    width: 20%;
+}
+#account-preferences li:last-child {
+    border-left: 1px solid #3F65A5;
+    float: right;
+    margin: 0 -5px 0 -1px;
+}
+#account-preferences li a {
+    color: #FFFFFF;
+    display: block;
+    font-size: 16px;
+    height: 67px;
+    letter-spacing: -0.03em;
+    line-height: 67px;
+    text-align: center;
+    text-shadow: 2px 2px 0 #20417A;
+}
+#account-preferences li a:hover {
+    background: #4367a4;              /* IE6 & IE7  */
+    background: -moz-linear-gradient(rgba(255, 255, 255, .15), rgba(177, 176, 176, .15));      /* FF 3.6+ */
+    background: -ms-linear-gradient(rgba(255, 255, 255, .15), rgba(177, 176, 176, .15));       /* IE10 */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, .15)), color-stop(100%, rgba(177, 176, 176, .15))); /* Safari 4+, Chrome 2+ */
+    background: -webkit-linear-gradient(rgba(255, 255, 255, .15), rgba(177, 176, 176, .15));   /* Safari 5.1+, Chrome 10+ */
+    background: -o-linear-gradient(rgba(255, 255, 255, .15), rgba(177, 176, 176, .15));        /* Opera 11.10 */
+    background: linear-gradient(rgba(255, 255, 255, .15), rgba(177, 176, 176, .15));           /* the standard */
+
+    border-radius: 0;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+#progress-bar {
+    background-color: red;
+    bottom: 4px;
+    height: 4px;
+    left: 0;
+    position: relative;
+}
+#progress-completed-bar { float: left;	background-color: #00c213; height: 4px;}
+#progress-details { font-size: 12px;}
+
+
+/* Jumping to a place
+*****************************/
+#jump-to-place {clear: both; min-height: 40px; margin: 20px 5% 0;}
+#jump-to-place label {float:left; margin-right:5px; margin-top:4px; font-size:14px;}
+#jump-to-place input {float:left; margin-right:10px; margin-bottom:10px;}
+#jump-to-place input#jump-to-place-button {height:29px;}
+#placeInfoContainer {clear:both;}
+#confirmForm { padding-left:15px; }
+#remove-place-img { width:30px; height: 30px; vertical-align: middle; }
+#open-in-maps-img { height: 30px; vertical-align: middle; margin-right: 2px}
+ul#link-list { margin-left: 15px }
+ul#link-list>li a {float: left; margin-right: 25px}
+ul.searchresults li {
+    margin-bottom: 12px;
+    white-space: nowrap;
+}
+.find-places-category-icon { width:25px; height: 25px; float: left }
+
+/* Base styles for sections
+*****************************/
+.place-section {
+    margin: 10px 0;
+    padding: 2px 15px;
+}
+.place-section .edit-section {margin-bottom:20px;}
+.place-section h5 {margin-bottom:10px;}
+.error {color:red;}
+.info  { font-size: 0.8em; color:blue; }
+.spinner {display:none; width:190px; height:18px; background:url(../images/loader.gif) no-repeat bottom right; }
+
+/* Editing sections
+*****************************/
+h1#edit-title {margin-bottom: 10px}
+p#edit-ppid {margin-left: 2px; color: #124191}
+#special-edit-section {margin: -10px 0 50px -15px}
+.save-section {margin-top: 7px;}
+.not-being-edited .editable input, .not-being-edited .editable select, .not-being-edited .editable h5 {display:none;}
+.being-edited .editable p {display:none;}
+.being-edited .save-in-progress {display:none;}
+.not-being-edited .save-section, .not-being-edited .cancel-section {display:none;}
+.being-edited .edit-section {visibility:hidden;}
+.not-being-edited .legacy-categories .info { display: none; }
+.legacy-categories p { color: #666}
+.legacy-categories .info { margin-bottom: 0; color: blue; }
+.location-map-container { width:100%; height:200px; margin-bottom: 20px}
+#place-provider {float:right; margin-right:5px; margin-top:4px; font-size:14px; color:#1C3CA5;}
+#to-fix-desc {margin-left:15px; margin-top:8px; font-size:16px; color:#1C3CA5; }
+/* Other sections should not be editable whilst editing a section
+*****************************/
+.another-section-is-being-edited .edit-section {visibility:hidden;}
+
+/* Categories */
+ul#categories { font-size: 16px }
+
+#place-xml-link { padding-bottom: 20px; display: block;}
+
+
+/* Admin Section
+*****************************/
+/*  users list section
+***********/
+div.table-container {max-height:500px; padding:5px 5px 0 5px; margin-bottom:20px; overflow:auto; border:1px solid #eee;}
+thead tr {background-color:#666; color:#fff;}
+thead th {padding:0 5px; text-align:left;}
+tbody tr.in-active {background-color:#FF7F7F;}
+tbody tr.current .arrow-container {display:block; position:relative;}
+tbody tr.current .arrow {position:absolute; right:10px; top:-18px; display:block; width:10px; height:15px; background:url("../images/arrow.png") no-repeat;}
+tbody tr td {padding:5px;}
+.nokiaLogo {background:url(../images/nokia-logo.png) no-repeat 5px center;}
+th:first-child#userNameColumn {border-bottom-left-radius: 0}
+th:last-child#accountTypeColumn {border-bottom-right-radius: 0}
+
+
+/*  Adding users
+*******/
+#curatorUserList form {margin:0; float:right;}
+#curatorUserList form#addNoeUser {float:left;}
+#curatorUserList .submit {margin:0;}
+
+#curator-user-list.dataTables_filter input {
+    margin-left: 5px;
+    width: 380px;
+}
+
+#curator-user-list {
+    max-height:500px; padding:5px 5px 0 5px; margin-bottom:5px; overflow:auto; border:1px solid #eee;
+    width: 460px;
+}
+
+#curator-user-list .dataTables_scroll table {
+    cursor: pointer;
+    border-spacing: 0;
+}
+
+#curator-user-list .dataTables_filter {
+    margin-bottom: 5px;
+
+}
+
+/*  News section
+*******/
+#headlineText {
+    width: 440px;
+}
+#news {
+    margin-top: 5px;
+    margin-left: 15px;
+}
+
+#titlesContainer table td {vertical-align: middle;}
+
+/*  SdcBulkBlacklist
+*******/
+#sdcBulkBlacklist textarea, #placesFeedContainer textarea {width:350px;}
+#sdcBlacklistActionResult form, #placeFeedActionResult form {margin:0; width:450px;}
+
+/*  Adding and editing a user
+*******************/
+#show-change-password-link {float:right;}
+#change-password-section {clear:both; overflow:hidden;}
+#role-section {clear:both;}
+#active {display:block; margin-left:0;}
+#delete-user {float:right;}
+#userForm input {margin-bottom:5px;}
+#userForm input.submit {margin-bottom:0;}
+#userForm .error {margin-bottom:5px;}
+
+#forbidden {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    margin: 0 auto;
+    width: 300px;
+}
+
+#forbidden h1 {
+    font-size: 24px;
+}
+
+.rainbow-row {
+    height: 1px;
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+#feedbackForm,
+.not-visible {
+    display: none;
+}
+
+.feedbackLink {font-size:10px; margin-left:20px;}
+.feedbackInfo {font-size:12px; font-style: italic; }
+.thankYou {font-size: 24px; vertical-align: middle;}
+
+
+/* Edit a place */
+.editForm {
+    clear: both;
+    margin-top: 10px;
+}
+
+#loading { 
+    position: absolute;
+    left: 0px;
+    top: 67px;
+    display: none;
+    background: gold;
+    padding: 0.3em;
+    font-weight: bold;
+}
+li.active {
+    text-decoration: underline;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none;
+}
+
+input.day-selected {
+  background-color: #aaa;
+}
+
+.rating {
+  overflow: hidden;
+  display: inline-block;
+  color: silver;
+  margin-bottom: -2px;
+}
+.rating-input {
+  position: absolute;
+  left: 0;
+  top: -50px;
+}
+.rating:hover .rating-star:hover,
+.rating:hover .rating-star:hover ~ .rating-star,
+.rating-input:checked ~ .rating-star {
+  color: goldenrod;
+  background-position: 0 0;
+}
+.rating-star,
+.rating:hover .rating-star {
+  float: right;
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin-bottom: 0px;
+  background: url("../images/star.png") 0 -16px;
+}
+
+/* Activity calendar on statistic page */
+#activitiesContainer .cal-day { fill: #ddd; }
+#activitiesContainer .cal-wday { fill: #ddd; font: 10px sans-serif; }
+#activitiesContainer .cal-month { fill: #ddd; font: 10px sans-serif; }
+
+#activitiesContainer .cal-q0 { fill:#797; }
+#activitiesContainer .cal-q1 { fill:#795; }
+#activitiesContainer .cal-q2 { fill:#595; }
+#activitiesContainer .cal-q3 { fill:#494; }
+#activitiesContainer .cal-q4 { fill:#292; }
+#activitiesContainer .cal-q5 { fill:#090; }

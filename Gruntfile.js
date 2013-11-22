@@ -19,6 +19,13 @@ module.exports = function(grunt) {
         dest: 'build/js/<%= pkg.name %>.js'
       }
     },
+    cssmin: {
+      combine: {
+        files: {
+          'build/css/pcur.min.css': ['src/css/**/*.css']
+        }
+      }
+    },
     uglify: {
       options: {
         banner: '<%= banner %>',
@@ -43,13 +50,13 @@ module.exports = function(grunt) {
         expand: true,
         cwd: 'lib/js',
         src: '**/*',
-        dest: 'build/js/lib/app'
+        dest: 'build/js/lib'
       },
       list_css: {
         expand: true,
         cwd: 'lib/css',
         src: '**/*',
-        dest: 'build/css/lib/app'
+        dest: 'build/css/lib'
       }
     },
     bower: {
@@ -121,9 +128,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-bower-task');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
 
   // Default task.
-  grunt.registerTask('build', [/*'jshint', 'qunit',*/ 'concat', 'bower', 'copy', 'uglify']); 
+  grunt.registerTask('build', [/*'jshint', 'qunit',*/ 'concat', 'bower', 'copy', 'cssmin', 'uglify']); 
   grunt.registerTask('server', ['build', 'connect']);
 
   grunt.registerTask('default', ['build'])
