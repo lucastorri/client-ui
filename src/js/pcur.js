@@ -16,22 +16,22 @@ angular.module('pcur', ['ngRoute', 'pcur-base', 'pcur-login', 'pcur-config', 'pc
     $sceDelegateProvider.resourceUrlWhitelist(['self', config.api + '/**']);
 
 }])
-.factory('httpInterceptor', ['$q', '$location', 'routes', function($q, $location, routes) {
+.factory('httpInterceptor', ['$q', '$location', 'routes', 'loading', function($q, $location, routes, loading) {
 
     var count = 0;
     
     return {
         request: function(config) {
             count++;
-            /*console.log('loading');*/
+            loading.start();
             return config || $q.when(config);
         },
         response: function(response) {
-            --count === 0/* && console.log('finished loading')*/;
+            --count === 0 && loading.stop();
             return response || $q.when(response);
         },
         responseError: function(rejection) {
-            --count === 0/* && console.log('finished loading')*/;
+            --count === 0 && loading.stop();
             rejection.status === 403 && $location.path(routes.login);
             return $q.reject(rejection);
         }
