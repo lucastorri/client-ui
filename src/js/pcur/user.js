@@ -1,11 +1,11 @@
-angular.module('pcur-user', ['pcur-config'])
-.factory('user', ['$http', 'config', function($http, config) {
+angular.module('pcur-user', ['pcur-config', 'pcur-api'])
+.factory('user', ['api', function(api) {
 
     var data;
 
     var user = {
         reload: function() {
-            data = $http.get(config.api + '/user/self');
+            data = api.user.self();
         },
         isLoaded: function() {
             return data;
