@@ -1,4 +1,4 @@
-angular.module('pcur-login', ['ngSanitize', 'pcur-config'])
-.controller('LoginCtrl', ['$scope', '$sce', 'config', function($scope, $sce, config) {
+angular.module('pcur-login', [])
+.controller('LoginCtrl', ['$scope', function($scope) {
 
 }]);
