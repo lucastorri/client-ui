@@ -1,17 +1,16 @@
 var https = require('https');
 var fs = require('fs');
 
-var staticFilesFolder = '/Users/lucastorri/Vagrant/curator/code/curator-server/src/main/webapp/static/';
+var port = 8443;
 
 var mimeTypes = {
-  "html": "text/html",
-  "jpeg": "image/jpeg",
-  "jpg": "image/jpeg",
-  "png": "image/png",
-  "js": "text/javascript",
-  "css": "text/css"
+  html: 'text/html',
+  jpeg: 'image/jpeg',
+  jpg: 'image/jpeg',
+  png: 'image/png',
+  js: 'text/javascript',
+  css: 'text/css'
 };
-
 
 var options = {
   key: fs.readFileSync('fakeapi/key.pem'),
@@ -54,6 +53,6 @@ https.createServer(options, function(req, res) {
     res.end(body);
   }
   
-}).listen(8443);
+}).listen(port);
 
-console.log('https://localhost:8443/pcur');
+console.log('https://localhost:' + port + '/');
