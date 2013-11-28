@@ -97,8 +97,11 @@ module.exports = function(grunt) {
         src: ['src/js/**/*.js', 'test/js/**/*.js']
       }
     },
-    qunit: {
-      files: ['test/**/*.html']
+    jasmine: {
+      src: ['bower_components/angular/angular.js', 'bower_components/angular-mocks/angular-mocks.js', 'src/js/**/*.js'],
+      options: {
+        specs: 'test/**/*Spec.js'
+      }
     },
     watch: {
       gruntfile: {
@@ -134,7 +137,6 @@ module.exports = function(grunt) {
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-connect'); //XXX to remove
@@ -143,6 +145,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks('grunt-contrib-jasmine');
 
   // Default task.
   grunt.registerTask('build', ['jshint', /*'qunit',*/ 'concat', 'bower', 'copy', 'cssmin', 'uglify']); 
