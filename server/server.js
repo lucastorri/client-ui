@@ -1,14 +1,15 @@
 var https = require('https');
 var fs = require('fs');
 
+var port = 8080;
+
 var mimeTypes = {
-  "html": "text/html",
-  "jpeg": "image/jpeg",
-  "jpg": "image/jpeg",
-  "png": "image/png",
-  "js": "text/javascript",
-  "css": "text/css",
-  "config.json": "application/json"
+  html: 'text/html',
+  jpeg: 'image/jpeg',
+  jpg: 'image/jpeg',
+  png: 'image/png',
+  js: 'text/javascript',
+  css: 'text/css'
 };
 
 var options = {
@@ -32,6 +33,6 @@ https.createServer(options, function(req, res) {
     });
   }
   
-}).listen(8080);
+}).listen(port);
 
-console.log('https://localhost:8080/');
+console.log('https://localhost:' + port + '/');
