@@ -19,14 +19,12 @@ angular.module('pcur-base', ['pcur-config', 'pcur-user'])
     var loading = false;
 
     function notify(state) {
-        if (loading === state) {
-            return;
+        if (loading !== state) {
+            loading = state;
+            watchers.forEach(function(watcher) {
+                watcher(loading);
+            });
         }
-
-        loading = state;
-        watchers.forEach(function(watcher) {
-            watcher(loading);
-        });
     }
 
     return {
@@ -43,5 +41,5 @@ angular.module('pcur-base', ['pcur-config', 'pcur-user'])
             }
         }
     };
-    
+
 });
