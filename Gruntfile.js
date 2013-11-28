@@ -105,6 +105,10 @@ module.exports = function(grunt) {
         files: '<%= jshint.gruntfile.src %>',
         tasks: ['jshint:gruntfile']
       },
+      src : {
+        files: 'src/**',
+        tasks: ['build']
+      },
       lib_test: {
         files: '<%= jshint.lib_test.src %>',
         tasks: ['jshint:lib_test', 'qunit']
@@ -142,6 +146,7 @@ module.exports = function(grunt) {
 
   // Default task.
   grunt.registerTask('build', ['jshint', /*'qunit',*/ 'concat', 'bower', 'copy', 'cssmin', 'uglify']); 
+  grunt.registerTask('~build', ['watch:src']);
   
   grunt.registerTask('server', ['shell:server']);
   grunt.registerTask('fakeapi', ['shell:fakeapi']);
