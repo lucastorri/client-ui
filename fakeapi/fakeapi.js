@@ -32,10 +32,6 @@ https.createServer(options, function(req, res) {
     }
   };
 
-  var dfault = function() {
-    code(404);
-  };
-
   var matched = false;
   for (var r in routes) {
     if (req.url.match(r)) {
@@ -45,7 +41,7 @@ https.createServer(options, function(req, res) {
     }
   }
   if (!matched) {
-    dfault();
+    code(404);
   }
   
   function code(c, body) {
