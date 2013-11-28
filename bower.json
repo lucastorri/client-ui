@@ -8,7 +8,8 @@
     "momentjs": "~2.4.0",
     "jquery": "~2.0.3",
     "bootstrap": "2.2.1",
-    "angular-route": "~1.2.1"
+    "angular-route": "~1.2.1",
+    "angular-sanitize": "1.2.1"
   },
   "exportsOverride": {
     "*": {

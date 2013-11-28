@@ -1,10 +1,13 @@
-angular.module('pcur', ['ngRoute', 'pcur-base', 'pcur-login'])
-.config(['$routeProvider', '$locationProvider', '$httpProvider', function($routeProvider, $locationProvider, $httpProvider) {
+angular.module('pcur', ['ngRoute', 'ngSanitize', 'pcur-base', 'pcur-login', 'pcur-config', 'pcur-directives'])
+.constant('routes', {
+    login: '/login'
+})
+.config(['$routeProvider', '$locationProvider', '$httpProvider', '$sceDelegateProvider', 'config', 'routes', function($routeProvider, $locationProvider, $httpProvider, $sceDelegateProvider, config, routes) {
 
     $locationProvider.html5Mode(true).hashPrefix('!');
 
     $routeProvider
-    .when('/login', {
+    .when(routes.login, {
         templateUrl: '/template/login.html',
         controller: 'LoginCtrl',
         pageTitle: 'Login'
@@ -13,8 +16,10 @@ angular.module('pcur', ['ngRoute', 'pcur-base', 'pcur-login'])
 
     $httpProvider.interceptors.push('httpInterceptor');
 
+    $sceDelegateProvider.resourceUrlWhitelist(['self', config.api + '/**']);
+
 }])
-.factory('httpInterceptor', ['$q', '$location', function($q, $location) {
+.factory('httpInterceptor', ['$q', '$location', 'routes', function($q, $location, routes) {
 
     var count = 0;
     
@@ -30,7 +35,7 @@ angular.module('pcur', ['ngRoute', 'pcur-base', 'pcur-login'])
         },
         responseError: function(rejection) {
             --count == 0 && console.log('finished loading');
-            rejection.status == 403 && $location.path('/login');
+            rejection.status == 403 && $location.path(routes.login);
             return $q.reject(rejection);
         }
     };

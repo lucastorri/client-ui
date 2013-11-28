@@ -21,7 +21,6 @@ https.createServer(options, function(req, res) {
   
   var resource = req.url.match(/\/(js|css|favicon.ico|template|config.json)/);
   if (resource) {
-    console.log('build' + req.url);
     fs.readFile('build' + req.url, 'utf-8', function(err, data) {
       res.writeHead(200, {'Content-Type': mimeTypes[resource[1]]});
       res.end(data);

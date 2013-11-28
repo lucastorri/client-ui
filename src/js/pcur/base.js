@@ -1,5 +1,4 @@
 angular.module('pcur-base', ['pcur-config', 'pcur-user'])
-.controller('PcurCtrl', ['$scope', '$http', 'user', function($scope, $http, user) {
-
+.controller('PcurCtrl', ['$scope', '$http', 'config', 'user', function($scope, $http, config, user) {
 
 }]);
