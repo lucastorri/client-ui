@@ -23,16 +23,16 @@ angular.module('pcur', ['ngRoute', 'pcur-base', 'pcur-login', 'pcur-config', 'pc
     return {
         request: function(config) {
             count++;
-            console.log('loading');
+            /*console.log('loading');*/
             return config || $q.when(config);
         },
         response: function(response) {
-            --count == 0 && console.log('finished loading');
+            --count === 0/* && console.log('finished loading')*/;
             return response || $q.when(response);
         },
         responseError: function(rejection) {
-            --count == 0 && console.log('finished loading');
-            rejection.status == 403 && $location.path(routes.login);
+            --count === 0/* && console.log('finished loading')*/;
+            rejection.status === 403 && $location.path(routes.login);
             return $q.reject(rejection);
         }
     };

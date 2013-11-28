@@ -1,4 +1,5 @@
 /*global module:false*/
+/*global require:false*/
 module.exports = function(grunt) {
 
   var path = require('path');
@@ -36,7 +37,7 @@ module.exports = function(grunt) {
       },
       app: {
         src: '<%= concat.dist.dest %>',
-        dest: '<%= concat.dist.dest.replace(/\.js$/, ".min.js") %>'
+        dest: '<%= concat.dist.dest.replace(/.js$/, ".min.js") %>'
       }
     },
     copy: {
@@ -70,6 +71,7 @@ module.exports = function(grunt) {
     },
     jshint: {
       options: {
+        expr: true,
         curly: true,
         eqeqeq: true,
         immed: true,
@@ -83,7 +85,9 @@ module.exports = function(grunt) {
         eqnull: true,
         browser: true,
         globals: {
-          jQuery: true
+          jQuery: false,
+          $: false,
+          angular: false
         }
       },
       gruntfile: {
@@ -137,11 +141,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-shell');
 
   // Default task.
-  grunt.registerTask('build', [/*'jshint', 'qunit',*/ 'concat', 'bower', 'copy', 'cssmin', 'uglify']); 
+  grunt.registerTask('build', ['jshint', /*'qunit',*/ 'concat', 'bower', 'copy', 'cssmin', 'uglify']); 
   
   grunt.registerTask('server', ['shell:server']);
   grunt.registerTask('fakeapi', ['shell:fakeapi']);
 
-  grunt.registerTask('default', ['build'])
+  grunt.registerTask('default', ['build']);
 
 };

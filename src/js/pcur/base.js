@@ -1,8 +1,9 @@
+/*jshint unused:false*/
 angular.module('pcur-base', ['pcur-config', 'pcur-user'])
 .constant('routes', {
     root: '/',
     login: '/login'
 })
-.controller('PcurCtrl', ['$scope', '$http', 'config', 'user', function($scope, $http, config, user) {
-
+.controller('PcurCtrl', ['config', 'user', function(config, user) {
+    
 }]);

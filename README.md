@@ -19,9 +19,9 @@ bower install              # install app js requirements
 ## Tasks
 
 * **build [default]**: builds the webapp
-* **server**: builds the webserver and open a webserver in port 9001
-* **connect**: bring the webserver up without building the app
+* **server**: brings up a server on http://localhost:8080 with the built app
 * **clean**: cleans the build
+* **fakeapi**: a mock for the api server
 
 
 
@@ -48,6 +48,7 @@ grunt-init gruntfile
 ### Bower Plugins to look for
 
 * Some templating plugin (like for default.ssp)
+* https://npmjs.org/package/grunt-angular-templates
 * https://github.com/gruntjs/grunt-contrib-watch
 * https://npmjs.org/package/grunt-preprocess
 * https://npmjs.org/package/grunt-usemin

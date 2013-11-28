@@ -1,4 +1,4 @@
 angular.module('pcur-login', [])
-.controller('LoginCtrl', ['$scope', function($scope) {
+.controller('LoginCtrl', [function() {
 
 }]);
