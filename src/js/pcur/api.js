@@ -1,4 +1,10 @@
 angular.module('pcur-api', ['pcur-config', 'pcur-router'])
+.constant('routes', {
+    
+    root: '/',
+    login: '/login'
+
+})
 .factory('api', ['router', function(router) {
 
     var api = {

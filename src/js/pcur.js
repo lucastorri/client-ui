@@ -1,4 +1,4 @@
-angular.module('pcur', ['ngRoute', 'pcur-base', 'pcur-login', 'pcur-config', 'pcur-directives'])
+angular.module('pcur', ['ngRoute', 'pcur-base', 'pcur-api', 'pcur-login', 'pcur-config', 'pcur-directives'])
 .config(['$routeProvider', '$locationProvider', '$httpProvider', '$sceDelegateProvider', 'config', 'routes', function($routeProvider, $locationProvider, $httpProvider, $sceDelegateProvider, config, routes) {
 
     $locationProvider.html5Mode(true).hashPrefix('!');

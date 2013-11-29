@@ -1,8 +1,4 @@
 angular.module('pcur-base', ['pcur-config', 'pcur-user'])
-.constant('routes', {
-    root: '/',
-    login: '/login'
-})
 .controller('PcurCtrl', ['$scope', 'loading', 'config', 'user', function($scope, loading, config, user) {
     
     $scope.started = true;
