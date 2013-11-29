@@ -18,12 +18,15 @@ bower install              # install app js requirements
 
 ## Tasks
 
-* **build [default]**: builds the webapp
+* **default**: test + build
+* **build**: builds the webapp
 * **~build**: continuously build the webapp on every change to `src`
-* **server**: brings up a server on http://localhost:8080 with the built app
+* **test**: run tests
+* **~test**: continuously run tests
+* **~dev**: continuously test + build
 * **clean**: cleans the build
+* **server**: brings up a server on http://localhost:8080 with the built app
 * **fakeapi**: a mock for the api server
-
 
 
 
