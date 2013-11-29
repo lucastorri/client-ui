@@ -9,7 +9,8 @@ var mimeTypes = {
   jpg: 'image/jpeg',
   png: 'image/png',
   js: 'text/javascript',
-  css: 'text/css'
+  css: 'text/css',
+  'config.json': 'application/json'
 };
 
 var options = {

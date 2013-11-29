@@ -12,6 +12,9 @@ describe("router", function() {
                 create: 'POST /place',
                 get: 'GET /place/{id}',
                 del: 'DELETE /place/{id}/something/{id}/else'
+            },
+            user: {
+                self: 'GET /user/self'
             }
         };
 
@@ -38,10 +41,12 @@ describe("router", function() {
         expect(r.places.create()).toBe(0);
         expect(r.places.get(321)).toBe(1);
         expect(r.places.del(123, 321)).toBe(2);
+        expect(r.user.self()).toBe(3);
 
         expect(calls[0]).toEqual({ method: 'POST', url: 'http://example.com/place' });
         expect(calls[1]).toEqual({ method: 'GET', url: 'http://example.com/place/321' });
         expect(calls[2]).toEqual({ method: 'DELETE', url: 'http://example.com/place/123/something/321/else' });
+        expect(calls[3]).toEqual({ method: 'GET', url: 'http://example.com/user/self' });
 
     }));
 
