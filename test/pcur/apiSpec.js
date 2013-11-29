@@ -20,7 +20,7 @@ describe("router", function() {
         var $http = function(opts) {
             calls.push(opts);
             return i++;
-        }
+        };
         
         module(function ($provide) {
             $provide.value('$http', $http);
@@ -50,25 +50,21 @@ describe("router", function() {
         var r = router(routes);
 
         r.places.create({ data: '{"name": "newPlace"}' });
-        r.places.get(123, { headers: { Accept: 'application/json' } })
+        r.places.get(123, { headers: { Accept: 'application/json' } });
 
         expect(calls[0]).toEqual({ method: 'POST', url: 'http://example.com/place', data: '{"name": "newPlace"}' });
-        expect(calls[1]).toEqual({ method: 'GET', url: 'http://example.com/place/123', headers: { Accept: 'application/json' } })
+        expect(calls[1]).toEqual({ method: 'GET', url: 'http://example.com/place/123', headers: { Accept: 'application/json' } });
 
     }));
 
     it("should complain with invalid methods", inject(function(router) {
 
-        expect(function(){
+        expect(function() {
 
             router({ r: 'INVALID_METHOD /hello' });
 
         }).toThrow(new Error('invalid method in INVALID_METHOD /hello'));
 
     }));
-
-    function isFunction(obj) {
-        return Object.prototype.toString.call(obj) === '[object Function]';
-    }
 
 });

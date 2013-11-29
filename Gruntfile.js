@@ -85,16 +85,21 @@ module.exports = function(grunt) {
         eqnull: true,
         browser: true,
         globals: {
-          jQuery: false,
-          $: false,
-          angular: false
+          angular: false,
+          //jasmine
+          it: false,
+          module: false,
+          expect: false,
+          inject: false,
+          beforeEach: false,
+          describe: false
         }
       },
       gruntfile: {
         src: 'Gruntfile.js'
       },
-      lib_test: {
-        src: ['src/js/**/*.js', 'test/js/**/*.js']
+      test: {
+        src: ['src/js/**/*.js', 'test/**/*.js', '<%= jshint.gruntfile.src %>']
       }
     },
     jasmine: {
@@ -104,17 +109,24 @@ module.exports = function(grunt) {
       }
     },
     watch: {
+      options: {
+        atBegin: true
+      },
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
         tasks: ['jshint:gruntfile']
       },
       src : {
-        files: 'src/**',
+        files: '<%= jshint.test.src %>',
         tasks: ['build']
       },
-      lib_test: {
-        files: '<%= jshint.lib_test.src %>',
-        tasks: ['jshint:lib_test', 'qunit']
+      test: {
+        files: '<%= jshint.test.src %>',
+        tasks: ['test']
+      },
+      dev: {
+        files: '<%= jshint.test.src %>',
+        tasks: ['test', 'build']
       }
     },
     shell: {
@@ -148,12 +160,16 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jasmine');
 
   // Default task.
-  grunt.registerTask('build', ['jshint', /*'qunit',*/ 'concat', 'bower', 'copy', 'cssmin', 'uglify']); 
+  grunt.registerTask('build', ['jshint', 'concat', 'bower', 'copy', 'cssmin', 'uglify']); 
   grunt.registerTask('~build', ['watch:src']);
-  
+
+  grunt.registerTask('test', ['jshint', 'jasmine']);
+  grunt.registerTask('~test', ['watch:test']);
+
   grunt.registerTask('server', ['shell:server']);
   grunt.registerTask('fakeapi', ['shell:fakeapi']);
 
-  grunt.registerTask('default', ['build']);
+  grunt.registerTask('default', ['test', 'build']);
+  grunt.registerTask('~dev', ['watch:dev']);
 
 };

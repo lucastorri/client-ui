@@ -51,7 +51,7 @@ angular.module('pcur-api', ['pcur-config'])
         }
 
         return function() {
-            var args = Array.prototype.slice.call(arguments, 0)
+            var args = Array.prototype.slice.call(arguments, 0);
             var opts = baseOpts(args);
 
             opts.method = method;
