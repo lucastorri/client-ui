@@ -18,10 +18,9 @@ angular.module('pcur-api', ['pcur-config'])
 }])
 .factory('router', ['$http', 'config', function($http, config) {
 
-    var baseUrl = config.api;
     var knownMethods = ['GET', 'POST', 'PUT', 'DELETE', 'HEAD'];
 
-    function parseRoutes(routes) {
+    function parseRoutes(routes, parseRoute) {
 
         if (!isObj(routes)) {
             throw new Error('routes are not an object');
@@ -30,7 +29,7 @@ angular.module('pcur-api', ['pcur-config'])
         for (var r in routes) {
             var v = routes[r];
             if (isObj(v)) {
-                parseRoutes(v);
+                parseRoutes(v, parseRoute);
             } else if (isString(v)) {
                 routes[r] = parseRoute(v);
             } else {
@@ -41,7 +40,15 @@ angular.module('pcur-api', ['pcur-config'])
         return routes;
     }
 
-    function parseRoute(route) {
+    function parseInternalRoute(uri) {
+        var f = function() {
+            return parseUri(uri, arguments, '');
+        };
+        f.base = uri;
+        return f;
+    }
+
+    function parseExternalRoute(route) {
         var parts = route.split(' ');
         var method = parts[0];
         var uri = parts[1];
@@ -55,7 +62,7 @@ angular.module('pcur-api', ['pcur-config'])
             var opts = baseOpts(args);
 
             opts.method = method;
-            opts.url = parseUri(uri, args);
+            opts.url = parseUri(uri, args, config.api);
 
             return $http(opts);
         };
@@ -74,7 +81,7 @@ angular.module('pcur-api', ['pcur-config'])
         return {};
     }
 
-    function parseUri(uri, args) {
+    function parseUri(uri, args, baseUrl) {
         var parts = uri.split(/\{[^\}]+\}/);
         return parts.reduce(function(f, p, i) {
             return f + p + (args[i] || '');
@@ -91,7 +98,14 @@ angular.module('pcur-api', ['pcur-config'])
         return isString(obj) && knownMethods.indexOf(obj) > -1;
     }
 
-    return parseRoutes;
+    return {
+        backend: function(routes) {
+            return parseRoutes(routes, parseExternalRoute);
+        },
+        frontend: function(routes) {
+            return parseRoutes(routes, parseInternalRoute);
+        }
+    };
 }]);
 
 

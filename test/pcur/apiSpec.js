@@ -1,22 +1,10 @@
 describe("router", function() {
 
     var calls;
-    var routes;
 
     beforeEach(module('pcur-api'));
 
     beforeEach(function () {
-
-        routes = {
-            places: {
-                create: 'POST /place',
-                get: 'GET /place/{id}',
-                del: 'DELETE /place/{id}/something/{id}/else'
-            },
-            user: {
-                self: 'GET /user/self'
-            }
-        };
 
         var i = 0;
         calls = [];
@@ -34,9 +22,18 @@ describe("router", function() {
 
     });
   
-    it("should parse each route to use $http", inject(function(router) {
+    it("backend should parse each route to use $http", inject(function(router) {
 
-        var r = router(routes);
+        var r = router.backend({
+            places: {
+                create: 'POST /place',
+                get: 'GET /place/{id}',
+                del: 'DELETE /place/{id}/something/{id}/else'
+            },
+            user: {
+                self: 'GET /user/self'
+            }
+        });
 
         expect(r.places.create()).toBe(0);
         expect(r.places.get(321)).toBe(1);
@@ -50,25 +47,48 @@ describe("router", function() {
 
     }));
 
-    it("should allow the usage of extra parameters", inject(function(router) {
+    it("backend should allow the usage of extra parameters", inject(function(router) {
 
-        var r = router(routes);
+        var r = router.backend({
+            create: 'POST /place',
+            get: 'GET /place/{id}',
+        });
 
-        r.places.create({ data: '{"name": "newPlace"}' });
-        r.places.get(123, { headers: { Accept: 'application/json' } });
+        r.create({ data: '{"name": "newPlace"}' });
+        r.get(123, { headers: { Accept: 'application/json' } });
 
         expect(calls[0]).toEqual({ method: 'POST', url: 'http://example.com/place', data: '{"name": "newPlace"}' });
         expect(calls[1]).toEqual({ method: 'GET', url: 'http://example.com/place/123', headers: { Accept: 'application/json' } });
 
     }));
 
-    it("should complain with invalid methods", inject(function(router) {
+    it("backend should complain with invalid methods", inject(function(router) {
 
         expect(function() {
 
-            router({ r: 'INVALID_METHOD /hello' });
+            router.backend({ r: 'INVALID_METHOD /hello' });
 
         }).toThrow(new Error('invalid method in INVALID_METHOD /hello'));
+
+    }));
+
+    it("frontend should parse routes", inject(function(router) {
+
+        var r = router.frontend({
+            login: '/login',
+            place: {
+                create: '/place/new',
+                edit: '/place/{ppid}'
+            }
+        });
+
+        expect(r.login.base).toEqual('/login');
+        expect(r.place.create.base).toEqual('/place/new');
+        expect(r.place.edit.base).toEqual('/place/{ppid}');
+
+        expect(r.login()).toEqual('/login');
+        expect(r.place.create()).toEqual('/place/new');
+        expect(r.place.edit(456)).toEqual('/place/456');
 
     }));
 
