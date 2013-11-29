@@ -1,5 +1,5 @@
-angular.module('pcur-base', ['pcur-config', 'pcur-user'])
-.controller('PcurCtrl', ['$scope', 'loading', 'config', 'user', function($scope, loading, config, user) {
+angular.module('pcur-base', ['pcur-user'])
+.controller('PcurCtrl', ['$scope', 'loading', 'user', function($scope, loading, user) {
     
     $scope.started = true;
 
@@ -7,7 +7,7 @@ angular.module('pcur-base', ['pcur-config', 'pcur-user'])
         $scope.loading = state;
     });
 
-    config; user; // to force loading
+    user; // force loading of users and avoid jshint complaints
 
 }])
 .service('loading', function() {
