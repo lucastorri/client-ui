@@ -1,7 +1,7 @@
 angular.module('pcur-api', ['pcur-config'])
 .factory('api', ['router', function(router) {
 
-    var routes = {
+    var api = {
         places: {
             create: 'POST /place',
             get: 'GET /place/{id}',
@@ -13,7 +13,7 @@ angular.module('pcur-api', ['pcur-config'])
         }
     };
 
-    return router(routes);
+    return router.backend(api);
 
 }])
 .factory('router', ['$http', 'config', function($http, config) {
