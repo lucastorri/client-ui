@@ -51,10 +51,11 @@ angular.module('pcur-api', ['pcur-config'])
         }
 
         return function() {
-            var opts = baseOpts(arguments);
+            var args = Array.prototype.slice.call(arguments, 0)
+            var opts = baseOpts(args);
 
             opts.method = method;
-            opts.url = parseUri(uri, arguments);
+            opts.url = parseUri(uri, args);
 
             return $http(opts);
         };
@@ -65,9 +66,9 @@ angular.module('pcur-api', ['pcur-config'])
             return {};
         }
 
-        var last = args[arguments.length - 1];
+        var last = args[args.length - 1];
         if (isObj(last)) {
-            return last;
+            return args.pop();
         }
 
         return {};
