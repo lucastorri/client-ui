@@ -13,7 +13,7 @@ angular.module('pcur-base', ['pcur-config', 'pcur-user'])
     });
 
 }])
-.factory('loading', function() {
+.service('loading', function() {
 
     var watchers = [];
     var loading = false;
@@ -39,6 +39,9 @@ angular.module('pcur-base', ['pcur-config', 'pcur-user'])
                 watchers.push(watcher);
                 watcher(loading);
             }
+        },
+        isLoading: function() {
+            return loading;
         }
     };
 
