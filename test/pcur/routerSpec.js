@@ -2,7 +2,7 @@ describe("router", function() {
 
     var calls;
 
-    beforeEach(module('pcur-api'));
+    beforeEach(module('pcur-router'));
 
     beforeEach(function () {
 

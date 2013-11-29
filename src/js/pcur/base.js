@@ -1,4 +1,3 @@
-/*jshint unused:false*/
 angular.module('pcur-base', ['pcur-config', 'pcur-user'])
 .constant('routes', {
     root: '/',
@@ -11,6 +10,8 @@ angular.module('pcur-base', ['pcur-config', 'pcur-user'])
     loading.watch(function(state) {
         $scope.loading = state;
     });
+
+    config; user; // to force loading
 
 }])
 .service('loading', function() {
