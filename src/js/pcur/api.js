@@ -1,13 +1,20 @@
-angular.module('pcur-api', ['pcur-config', 'pcur-router'])
-.constant('routes', {
-    
-    root: '/',
-    login: '/login'
+angular.module('pcur-api', ['pcur-router'])
+.constant('loginRoute', '/login')
+.provider('routes', ['loginRoute', function(loginRoute) {
 
-})
-.factory('api', ['router', function(router) {
+    this.paths = {
+        root: '/',
+        login: loginRoute
+    };
 
-    var api = {
+    this.$get = ['router', function(router) {
+        return router.frontend(this.paths);
+    }];
+
+}])
+.provider('api', function() {
+
+    this.paths = {
         places: {
             create: 'POST /place',
             get: 'GET /place/{id}',
@@ -19,6 +26,8 @@ angular.module('pcur-api', ['pcur-config', 'pcur-router'])
         }
     };
 
-    return router.backend(api);
+    this.$get = ['router', function(router) {
+        return router.backend(this.paths);
+    }];
 
-}]);
+});

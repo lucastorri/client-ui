@@ -1,13 +1,14 @@
 angular.module('pcur-base', ['pcur-user'])
+.constant('loginStatusCode', 403)
 .controller('PcurCtrl', ['$scope', 'loading', 'user', function($scope, loading, user) {
-    
+
     $scope.started = true;
 
     loading.watch(function(state) {
         $scope.loading = state;
     });
 
-    user; // force loading of users and avoid jshint complaints
+    user;
 
 }])
 .service('loading', function() {
