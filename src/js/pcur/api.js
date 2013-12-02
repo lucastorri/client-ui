@@ -1,5 +1,6 @@
 angular.module('pcur-api', ['pcur-router'])
 .constant('loginRoute', '/login')
+.constant('loginStatusCode', 403)
 .provider('routes', ['loginRoute', function(loginRoute) {
 
     this.paths = {

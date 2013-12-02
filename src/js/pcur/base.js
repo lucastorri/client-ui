@@ -1,5 +1,4 @@
 angular.module('pcur-base', ['pcur-user'])
-.constant('loginStatusCode', 403)
 .controller('PcurCtrl', ['$scope', 'loading', 'user', function($scope, loading, user) {
 
     $scope.started = true;
