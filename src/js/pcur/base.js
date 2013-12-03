@@ -1,5 +1,5 @@
-angular.module('pcur-base', ['pcur-user'])
-.controller('PcurCtrl', ['$scope', 'loading', 'user', function($scope, loading, user) {
+angular.module('pcur-base', ['pcur-user', 'pcur-api'])
+.controller('PcurCtrl', ['$scope', 'loading', 'user', 'api', 'routes', function($scope, loading, user, api, routes) {
 
     $scope.started = true;
 
@@ -7,7 +7,9 @@ angular.module('pcur-base', ['pcur-user'])
         $scope.loading = state;
     });
 
-    user;
+    $scope.user = user;
+    $scope.api = api;
+    $scope.routes = routes;
 
 }])
 .service('loading', function() {
