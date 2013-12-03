@@ -1,5 +1,7 @@
 # Experimental Grunt Project for PCUR
 
+Pushing for new ideas and how they can be used on our current project.
+
 ## Dependencies
 
 * node
