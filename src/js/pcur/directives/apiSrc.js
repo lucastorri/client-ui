@@ -1,4 +1,4 @@
-angular.module('pcur-directives', ['pcur-config'])
+angular.module('pcur-directives-api-src', ['pcur-config'])
 .directive('apiSrc', ['$sce', 'config', function($sce, config) {
     return {
         restrict: 'A',
