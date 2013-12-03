@@ -13,7 +13,7 @@ describe("router", function() {
             return i++;
         };
         
-        module(function ($provide) {
+        module(function($provide) {
             $provide.value('$http', $http);
             $provide.value('config', {
                 api: 'http://example.com'

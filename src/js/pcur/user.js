@@ -8,15 +8,14 @@ angular.module('pcur-user', ['pcur-config', 'pcur-api'])
             data = api.user.self();
         },
         isLoaded: function() {
-            return data;
+            var loaded = false;
+            this.data().success(function() {
+                loaded = true;
+            });
+            return loaded;
         },
         data: function(callback) {
-            if (!data) {
-                this.reload();
-            }
-
             callback && data.success(callback);
-
             return data;
         }
     };
