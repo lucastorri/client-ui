@@ -13,6 +13,7 @@ angular.module('pcur', ['ngRoute', 'pcur-base', 'pcur-api', 'pcur-login', 'pcur-
     })
     .otherwise({ redirectTo: paths.root });
 
+    $httpProvider.defaults.withCredentials = true;
     $httpProvider.interceptors.push('httpInterceptor');
 
     $sceDelegateProvider.resourceUrlWhitelist(['self', config.api + '/**']);
@@ -34,7 +35,10 @@ angular.module('pcur', ['ngRoute', 'pcur-base', 'pcur-api', 'pcur-login', 'pcur-
         },
         responseError: function(rejection) {
             --count === 0 && loading.stop();
-            rejection.status === loginStatusCode && $location.path(loginRoute);
+            if(rejection.status === loginStatusCode) {
+                loading.returnTo = $location.path();
+                $location.path(loginRoute);
+            }
             return $q.reject(rejection);
         }
     };

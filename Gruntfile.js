@@ -125,7 +125,7 @@ module.exports = function(grunt) {
         tasks: ['test']
       },
       dev: {
-        files: '<%= jshint.test.src %>',
+        files: ['src/**'],
         tasks: ['test', 'build']
       }
     },
